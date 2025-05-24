@@ -65,3 +65,4 @@ chandzabengi/
 - This package uses an **unofficial** Google Translate endpoint and may be limited by Google in the future.
 - Suitable for personal and testing projects.
 - Not recommended for commercial or sensitive projects.
+ 
