@@ -1,9 +1,9 @@
-import { createTranslator } from "./src/index.js";
+const { createTranslator } = require('../dist/index.js');
 
 (async () => {
   const translateEnToFa = createTranslator({ from: 'en', to: 'fa' });
-  const result1 = await translateEnToFa('hello');
-  console.log('en → fa:', result1); // باید ترجمه انگلیسی به فارسی را چاپ کند
+  const result = await translateEnToFa('hello');
+  console.log('Test en→fa:', result === 'سلام' ? 'PASS' : 'FAIL', result);
 
   const translateFaToEn = createTranslator({ from: 'fa', to: 'en' });
   const result2 = await translateFaToEn('سلام');
