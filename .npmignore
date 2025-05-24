@@ -1,0 +1,8 @@
+test/
+node_modules/
+.gitignore
+.npmignore
+*.test.js
+*.spec.js
+rollup.config.js
+package-lock.json 

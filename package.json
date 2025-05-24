@@ -1,0 +1,35 @@
+{
+  "name": "free-google-translate",
+  "version": "1.0.0",
+  "description": "A free and simple translation package using the unofficial Google Translate API.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "keywords": [
+    "translate",
+    "google-translate",
+    "free",
+    "api",
+    "language"
+  ],
+  "author": "Your Name <your@email.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/chandzabengi"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc && babel dist --out-dir dist --extensions .js,.ts --ignore '**/*.d.ts'"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.27.2",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-typescript": "^7.0.0",
+    "@types/node": "^20.0.0",
+    "jest": "^29.0.0",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.0"
+  }
+}
