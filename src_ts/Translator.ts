@@ -1,5 +1,5 @@
-import { BaseProvider } from './providers/BaseProvider';
-import { GoogleProvider } from './providers/GoogleProvider';
+import { BaseProvider } from "./providers/BaseProvider";
+import { GoogleProvider } from "./providers/GoogleProvider";
 
 export class Translator {
   private provider: BaseProvider;
@@ -9,16 +9,16 @@ export class Translator {
     this.provider = provider;
     // Get system locale and extract language code
     const locale = Intl.DateTimeFormat().resolvedOptions().locale;
-    this.defaultLanguage = locale.split('-')[0];
-    
+    this.defaultLanguage = locale.split("-")[0];
+
     if (!this.provider.isLanguageSupported(this.defaultLanguage)) {
-      this.defaultLanguage = 'en';
+      this.defaultLanguage = "en";
     }
   }
 
   async translate(text: string, to?: string, from?: string): Promise<string> {
     const targetLang = to || this.defaultLanguage;
-    const sourceLang = from || await this.provider.detect(text);
+    const sourceLang = from || (await this.provider.detect(text));
 
     if (!this.provider.isLanguageSupported(targetLang)) {
       throw new Error(`Language ${targetLang} is not supported`);
@@ -42,4 +42,4 @@ export class Translator {
   getDefaultLanguage(): string {
     return this.defaultLanguage;
   }
-} 
+}
