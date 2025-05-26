@@ -18,7 +18,7 @@ describe('Translator', () => {
       async translate(text: string, from: string, to: string): Promise<string> {
         return `${text} translated from ${from} to ${to}`;
       }
-      async detect(text: string): Promise<string> {
+      async detect(): Promise<string> {
         return 'en';
       }
       getSupportedLanguages(): string[] {
@@ -54,7 +54,7 @@ describe('Translator', () => {
       async translate(text: string, from: string, to: string): Promise<string> {
         return `${text} translated from ${from} to ${to}`;
       }
-      async detect(text: string): Promise<string> {
+      async detect(): Promise<string> {
         return 'en';
       }
       getSupportedLanguages(): string[] {
