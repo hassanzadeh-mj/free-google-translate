@@ -2,16 +2,15 @@
   "name": "react-google-translate-mj",
   "version": "1.1.1",
   "description": "A free and simple translation package using the unofficial Google Translate API.",
-  "main": "./dist/index.js",
+  "type": "module",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "type": "commonjs",
-  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.js",
+      "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     }
   },
@@ -38,7 +37,9 @@
   "homepage": "https://github.com/hassanzadeh-mj/free-google-translate#readme",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean && tsc && babel dist --out-dir dist --extensions .js,.ts --ignore '**/*.d.ts'",
+    "build": "npm run clean && tsc && npm run build:esm && npm run build:cjs",
+    "build:esm": "babel src_ts --out-dir dist --extensions .ts,.tsx --ignore '**/*.d.ts' --config-file ./babel.config.esm.cjs",
+    "build:cjs": "babel src_ts --out-dir dist --extensions .ts,.tsx --ignore '**/*.d.ts' --config-file ./babel.config.cjs.cjs --out-file-extension .cjs",
     "test": "jest",
     "prepare": "npm run build"
   },
