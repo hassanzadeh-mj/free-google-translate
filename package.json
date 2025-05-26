@@ -5,11 +5,14 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "type": "commonjs",
+  "sideEffects": false,
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "default": "./dist/index.js"
     }
   },
   "keywords": [
@@ -20,7 +23,8 @@
     "language",
     "translation",
     "provider",
-    "typescript"
+    "typescript",
+    "react"
   ],
   "author": "Moji <mj.hassanzadeh1995@gmail.com>",
   "license": "MIT",
@@ -42,14 +46,26 @@
     "dist",
     "README.md"
   ],
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.27.2",
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.0.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
     "jest": "^29.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "rimraf": "^5.0.0",
     "ts-jest": "^29.1.2",
     "typescript": "^5.0.0"
