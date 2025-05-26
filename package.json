@@ -2,7 +2,6 @@
   "name": "react-google-translate-mj",
   "version": "1.1.7",
   "description": "A free and simple translation package using the unofficial Google Translate API.",
-  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -10,8 +9,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "build": "rollup -c rollup.config.mjs",
+    "dev": "rollup -c rollup.config.mjs -w",
     "lint": "eslint src_ts --ext .ts,.tsx",
     "format": "prettier --write \"src_ts/**/*.{ts,tsx}\"",
     "prepare": "npm run build",
