@@ -1,12 +1,12 @@
 {
   "name": "react-google-translate-mj",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A React package for automatic website translation using Google Translate",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "type": "module",
-  "homepage": "https://react-google-translate-mj.vercel.app/en/",
+  "homepage": "https://react-google-translate-mj.vercel.app/fa/contact",
   "scripts": {
     "build": "rollup -c rollup.config.cjs",
     "prepare": "npm run build"
