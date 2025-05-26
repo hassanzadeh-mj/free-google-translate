@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es2018",
-    "module": "commonjs",
+    "target": "ES2018",
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
     "declaration": true,
+    "declarationDir": "./dist",
     "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
     "moduleResolution": "node"
   },
-  "include": ["src_ts/**/*", "test/**/*"],
+  "include": ["src_ts/**/*"],
   "exclude": ["node_modules", "dist"]
 } 
