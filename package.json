@@ -3,50 +3,29 @@
   "version": "1.1.2",
   "description": "A free and simple translation package using the unofficial Google Translate API.",
   "type": "module",
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs",
-      "default": "./dist/index.js"
+      "types": "./dist/index.d.ts"
     }
   },
-  "keywords": [
-    "translate",
-    "google-translate",
-    "free",
-    "api",
-    "language",
-    "translation",
-    "provider",
-    "typescript",
-    "react"
-  ],
-  "author": "Moji <mj.hassanzadeh1995@gmail.com>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/hassanzadeh-mj/free-google-translate"
-  },
-  "bugs": {
-    "url": "https://github.com/hassanzadeh-mj/free-google-translate/issues"
-  },
-  "homepage": "https://github.com/hassanzadeh-mj/free-google-translate#readme",
-  "scripts": {
-    "clean": "rimraf dist",
-    "build": "npm run clean && tsc && npm run build:esm && npm run build:cjs",
-    "build:esm": "babel src_ts --out-dir dist --extensions .ts,.tsx --ignore '**/*.d.ts' --config-file ./babel.config.esm.cjs",
-    "build:cjs": "babel src_ts --out-dir dist --extensions .ts,.tsx --ignore '**/*.d.ts' --config-file ./babel.config.cjs.cjs --out-file-extension .cjs",
-    "test": "jest",
-    "prepare": "npm run build"
-  },
+  "sideEffects": false,
   "files": [
     "dist",
     "README.md"
   ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc && npm run build:esm && npm run build:cjs",
+    "build:esm": "babel src_ts --out-dir dist --extensions .ts,.tsx --ignore '**/*.d.ts' --config-file ./babel.config.esm.cjs --keep-file-extension",
+    "build:cjs": "babel src_ts --out-dir dist --extensions .ts,.tsx --ignore '**/*.d.ts' --config-file ./babel.config.cjs.cjs --out-file-extension .cjs",
+    "test": "jest",
+    "prepare": "npm run build"
+  },
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
@@ -70,5 +49,26 @@
     "rimraf": "^5.0.0",
     "ts-jest": "^29.1.2",
     "typescript": "^5.0.0"
-  }
+  },
+  "keywords": [
+    "translate",
+    "google-translate",
+    "free",
+    "api",
+    "language",
+    "translation",
+    "provider",
+    "typescript",
+    "react"
+  ],
+  "author": "Moji <mj.hassanzadeh1995@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hassanzadeh-mj/free-google-translate"
+  },
+  "bugs": {
+    "url": "https://github.com/hassanzadeh-mj/free-google-translate/issues"
+  },
+  "homepage": "https://github.com/hassanzadeh-mj/free-google-translate#readme"
 }
