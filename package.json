@@ -1,35 +1,57 @@
 {
   "name": "react-google-translate-mj",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A free and simple translation package using the unofficial Google Translate API.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "keywords": [
     "translate",
     "google-translate",
     "free",
     "api",
-    "language"
+    "language",
+    "translation",
+    "provider",
+    "typescript"
   ],
-  "author": "Moji mj.hassanzadeh1995@gmail.com",
+  "author": "Moji <mj.hassanzadeh1995@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/hassanzadeh-mj/free-google-translate"
   },
+  "bugs": {
+    "url": "https://github.com/hassanzadeh-mj/free-google-translate/issues"
+  },
+  "homepage": "https://github.com/hassanzadeh-mj/free-google-translate#readme",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean && tsc && babel dist --out-dir dist --extensions .js,.ts --ignore '**/*.d.ts'"
+    "build": "npm run clean && tsc && babel dist --out-dir dist --extensions .js,.ts --ignore '**/*.d.ts'",
+    "test": "jest",
+    "prepare": "npm run build"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.27.2",
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-typescript": "^7.0.0",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20.0.0",
     "jest": "^29.0.0",
     "rimraf": "^5.0.0",
+    "ts-jest": "^29.1.2",
     "typescript": "^5.0.0"
   }
 }
