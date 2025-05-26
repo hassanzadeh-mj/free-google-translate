@@ -1,15 +1,12 @@
 import { Translator as TranslatorClass } from './Translator';
-import { Translator } from './Translator';
-
-export { Translator } from './Translator';
-export { BaseProvider } from './providers/BaseProvider';
 export { GoogleProvider } from './providers/GoogleProvider';
+export { BaseProvider } from './providers/BaseProvider';
+export { TranslatorClass as Translator };
 
-// Helper function for quick usage
-export function createTranslator(options: { provider?: string; to?: string; from?: string } = {}) {
-  const translator = new Translator();
-  
-  return async (text: string) => {
-    return translator.translate(text, options.to, options.from);
-  };
+export function createTranslator(options?: { to?: string }) {
+  const translator = new TranslatorClass();
+  if (options?.to) {
+    return (text: string) => translator.translate(text, options.to as string);
+  }
+  return (text: string) => translator.translate(text);
 } 

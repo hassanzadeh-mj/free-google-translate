@@ -1,6 +1,5 @@
 import { BaseProvider } from './providers/BaseProvider';
 import { GoogleProvider } from './providers/GoogleProvider';
-import os from 'os';
 
 export class Translator {
   private provider: BaseProvider;
