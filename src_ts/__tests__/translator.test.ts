@@ -15,6 +15,8 @@ describe("Translator", () => {
 
   it("should allow setting a custom provider", () => {
     class CustomProvider extends BaseProvider {
+      name = 'custom';
+      
       async translate(text: string, from: string, to: string): Promise<string> {
         return `${text} translated from ${from} to ${to}`;
       }
