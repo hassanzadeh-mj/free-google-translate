@@ -1,118 +1,166 @@
-# Free Google Translate
+# react-google-translate-mj
 
-A free and powerful translation package that uses the unofficial Google Translate API. It automatically detects your system language and supports multiple translation providers.
+A React package for automatic website translation using Google Translate. This package makes it easy to add multi-language support to your React applications with minimal configuration.
 
 ## Features
 
-- 🆓 Free to use - no API key required
-- 🌐 Uses Google Translate API
-- 🔍 Automatic language detection
-- 💻 System language detection
-- 🔌 Provider-based architecture
-- 📦 TypeScript support
-- ⚡ Simple and fast
+- 🌐 Easy integration with React applications
+- 🔄 Automatic translation using Google Translate
+- 📍 URL-based language routing
+- 🎯 Component-based translation
+- 💾 Language persistence
+- ⚡ Lightweight and performant
 
 ## Installation
 
 ```bash
 npm install react-google-translate-mj
+# or
+yarn add react-google-translate-mj
 ```
 
-## Usage
+## Basic Usage
 
-### Simple Usage
+```jsx
+import { TranslatorProvider, TranslatableText } from 'react-google-translate-mj';
 
-```typescript
-import { createTranslator } from 'react-google-translate-mj';
-
-// Creates a translator using your system's language as default
-const translate = createTranslator();
-
-// Translate to your system's language
-const result1 = await translate('Hello');
-
-// Translate to a specific language
-const translate2 = createTranslator({ to: 'fa' });
-const result2 = await translate2('Hello'); // Returns: سلام
+function App() {
+  return (
+    <TranslatorProvider defaultLanguage="en">
+      <h1>
+        <TranslatableText>Hello World!</TranslatableText>
+      </h1>
+    </TranslatorProvider>
+  );
+}
 ```
 
-### Advanced Usage
+## Advanced Usage with React Router
 
-```typescript
-import { Translator, GoogleProvider } from 'react-google-translate-mj';
+```jsx
+import { TranslatorProvider, TranslatableText, useTranslator } from 'react-google-translate-mj';
+import { BrowserRouter, Routes, Route, Link, useParams } from 'react-router-dom';
 
-// Create a translator instance
-const translator = new Translator();
+function Layout() {
+  const { setLanguage, currentLanguage } = useTranslator();
+  const { lang } = useParams();
 
-// Translate with language detection
-const result1 = await translator.translate('Hello', 'fa');
-console.log(result1); // سلام
+  // Sync URL language with translator
+  useEffect(() => {
+    if (lang && lang !== currentLanguage) {
+      setLanguage(lang);
+    }
+  }, [lang, currentLanguage]);
 
-// Translate with explicit source language
-const result2 = await translator.translate('سلام', 'en', 'fa');
-console.log(result2); // Hello
-
-// Get supported languages
-const languages = translator.getSupportedLanguages();
-console.log(languages); // ['en', 'fa', 'ar', ...]
-
-// Get system default language
-const defaultLang = translator.getDefaultLanguage();
-console.log(defaultLang); // 'en' or your system language
-```
-
-### Custom Provider
-
-You can create your own translation provider by implementing the `BaseProvider` interface:
-
-```typescript
-import { BaseProvider } from 'react-google-translate-mj';
-
-class MyCustomProvider extends BaseProvider {
-  name = 'custom';
-  
-  async translate(text: string, from: string, to: string): Promise<string> {
-    // Your translation implementation
-  }
-  
-  async detect(text: string): Promise<string> {
-    // Your language detection implementation
-  }
-  
-  isLanguageSupported(lang: string): boolean {
-    // Your language support check
-  }
-  
-  getSupportedLanguages(): string[] {
-    // Return supported languages
-  }
+  return (
+    <div>
+      <nav>
+        <Link to={`/${currentLanguage}/home`}>
+          <TranslatableText>Home</TranslatableText>
+        </Link>
+      </nav>
+      <Outlet />
+    </div>
+  );
 }
 
-// Use your custom provider
-const translator = new Translator(new MyCustomProvider());
+function App() {
+  return (
+    <BrowserRouter>
+      <TranslatorProvider defaultLanguage="en">
+        <Routes>
+          <Route path="/:lang/*" element={<Layout />}>
+            {/* Your routes here */}
+          </Route>
+        </Routes>
+      </TranslatorProvider>
+    </BrowserRouter>
+  );
+}
 ```
+
+## Components
+
+### TranslatorProvider
+
+The root component that provides translation context.
+
+```jsx
+<TranslatorProvider 
+  defaultLanguage="en"     // Required: Default language code
+  targetLanguage="fr"      // Optional: Initial target language
+>
+  {/* Your app content */}
+</TranslatorProvider>
+```
+
+### TranslatableText
+
+Wrap any text content that needs translation.
+
+```jsx
+<TranslatableText>
+  This text will be automatically translated
+</TranslatableText>
+```
+
+### useTranslator Hook
+
+Access translation functions and state in your components.
+
+```jsx
+const { 
+  currentLanguage,    // Current active language
+  setLanguage,        // Function to change language
+  defaultLanguage,    // Default language set in provider
+  isTranslating      // Translation status
+} = useTranslator();
+```
+
+## API Reference
+
+### TranslatorProvider Props
+
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| defaultLanguage | string | Yes | The default language code (e.g., 'en') |
+| targetLanguage | string | No | Initial target language for translation |
+| children | ReactNode | Yes | Child components |
+
+### useTranslator Hook Returns
+
+| Property | Type | Description |
+|----------|------|-------------|
+| currentLanguage | string | Current active language code |
+| defaultLanguage | string | Default language code from provider |
+| setLanguage | (lang: string) => void | Function to change current language |
+| isTranslating | boolean | Whether translation is in progress |
 
 ## Supported Languages
 
-The default Google provider supports many languages including:
-- English (en)
-- Persian (fa)
-- Arabic (ar)
-- French (fr)
-- German (de)
-- Spanish (es)
-- Turkish (tr)
-- Russian (ru)
-- Japanese (ja)
-- Korean (ko)
-- Chinese (zh)
-And many more...
+The package supports all languages available in Google Translate. Common language codes:
 
-## Notes
+- English: 'en'
+- Persian: 'fa'
+- Arabic: 'ar'
+- French: 'fr'
+- German: 'de'
+- Spanish: 'es'
+- Chinese: 'zh'
+- And many more...
 
-- This package uses an unofficial Google Translate API
-- Suitable for personal and testing projects
-- For production or commercial use, consider using official translation APIs
+## Example Projects
+
+Check out our [test-translator](https://github.com/hassanzadeh-mj/free-google-translate/tree/main/test-translator) demo for a complete example including:
+
+- URL-based language routing
+- Multiple page navigation
+- Language selector implementation
+- Persistent translations across routes
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
@@ -120,23 +168,4 @@ MIT
 
 ## Author
 
-Moji (mj.hassanzadeh1995@gmail.com)
-
-## Project Structure
-```
-chandzabengi/
-├── package.json
-├── test.js
-├── src/
-│   ├── index.js
-│   ├── adapters/
-│   │   └── googleTranslateAdapter.js
-│   └── core/
-│       └── translationService.js
-```
-
-## Important Notes
-- This package uses an **unofficial** Google Translate endpoint and may be limited by Google in the future.
-- Suitable for personal and testing projects.
-- Not recommended for commercial or sensitive projects.
- 
+MJ Hassanzadeh
